@@ -67,12 +67,12 @@ runDev: checkEnvVariables
 runDevDebug: checkEnvVariables
 	# After this, inside the container, run these commands to start the application:
 	#	cd /
-	#	./start_RqApp.sh
+	#	./start_RqApp_named.sh
 	# or
 	#	./test_en.sh
 	#
 	# conTeXt logs will be in /app/obs-pdf/output/ (context.err and context.out)
-	docker run --env AWS_ACCESS_KEY_ID --env AWS_SECRET_ACCESS_KEY --env REDIS_URL --env QUEUE_PREFIX="dev-" --env DEBUG_MODE=On --name obs-pdf --rm --publish 8123:80 --interactive --tty --cpus=0.5 unfoldingword/obs-pdf:develop bash
+	docker run --env AWS_ACCESS_KEY_ID --env AWS_SECRET_ACCESS_KEY --env REDIS_URL --env QUEUE_PREFIX="dev-" --env DEBUG_MODE=On --network tx-net --name obs-pdf --rm --publish 8123:80 --interactive --tty --cpus=0.5 unfoldingword/obs-pdf:develop ./start_RqApp_named.sh
 
 runDebug: checkEnvVariables
 	# After this, inside the container, run these commands to start the application:
